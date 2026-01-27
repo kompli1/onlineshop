@@ -886,6 +886,18 @@ input:focus, select:focus, textarea:focus{
   #searchInput, #sortSelect{ min-width: unset; }
   .filters{ width:100%; }
 
+   #searchInput, #sortSelect{ min-width: unset; }
+
+  .filters{
+    width:100%;
+    display: flex;
+  }
+
+  .filters input,
+  .filters select{
+    flex: 1;
+  }
+  
   .hero .container{
     padding: 20px;
   }
@@ -984,3 +996,4 @@ input:focus, select:focus, textarea:focus{
     height: 230px;
   }
 }
+
