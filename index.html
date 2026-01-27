@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KOMPLI — Premium Store</title>
+  <link rel="icon" type="image/png" href="./logo.png">
+
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb--1"></span>
+    <span class="orb orb--2"></span>
+    <span class="orb orb--3"></span>
+  </div>
+
+  <header class="header">
+    <div class="container header__row">
+      <a class="brand" href="#">
+        <img class="brand__logo" src="logo.png" alt="KOMPLI logo" />
+        <div class="brand__text">
+          <div class="brand__name">KOMPLI</div>
+          <div class="brand__tag">premium store</div>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="#catalog">Каталог</a>
+        <a href="#tracking">Трекинг</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contacts">Контакты</a>
+        <a href="#faq">FAQ</a>
+          <a href="#guarantee">Гарантии</a>
+      </nav>
+
+      <button class="cart-btn" id="openCartBtn">
+        <span class="cart-btn__icon">🛒</span>
+        <span>Корзина</span>
+        <span class="badge" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__text">
+        <div class="pill">⚡ Новинки из Telegram автоматически</div>
+        <h1>KOMPLI — премиальная витрина товаров</h1>
+        <p>
+          Добавляйте товары в корзину, оформляйте заказ без оплаты на сайте и отправляйте номер
+          менеджеру в Telegram для подтверждения.
+        </p>
+
+        <div class="hero__actions">
+          <a class="btn" href="#catalog">Открыть каталог</a>
+          <a class="btn btn--ghost" href="#tracking">Трекинг заказа</a>
+        </div>
+
+   <div class="hero__mini-list hero__mini-list--anim">
+  <div class="mini-line">📦 Новинки из Telegram<br><span>каждый день</span></div>
+  <div class="mini-line">🛒 Оформление за 1 минуту<br><span>без оплаты на сайте</span></div>
+  <div class="mini-line">💬 Оплата и подтверждение<br><span>через менеджера</span></div>
+</div>
+<br>
+<div class="hero__socials">
+  <div class="hero__socials-label">Мы в соцсетях</div>
+
+  <a class="social-chip" href="https://t.me/komplistore" target="_blank" aria-label="Telegram">
+     <span>Telegram</span>
+  </a>
+
+  <a class="social-chip" href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
+     <span>Instagram</span>
+  </a>
+</div>
+<br>
+
+      <div class="hero__card">
+        <div class="hero__mini-title">Kompli Store</div>
+        <div class="hero__mini-list">
+          Kompli - магазин одежды , обуви для мужчин и женщин. Мы занимаемся оптовой и розничной продажей одежды и обуви с 2020 года .
+Цена в нашем магазине обоснована тем что мы делаем крупные оптовые закупки в больших партиях на прямую у поставщиков .
+Именно поэтому у нас более низкая цена по сравнению с другими магазинами .
+Также большое количество магазинов которые покупают у нас вещи и потом продают с наценкой.
+
+        </div>
+
+        <div class="hero__hint">
+          Совет: нажми на карточку товара — откроется <b>Quick View</b> 🔍
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="catalog">
+    <div class="container">
+      <div class="section__head">
+        <div>
+          <h2>Каталог</h2>
+          <div class="muted">Новые товары появляются автоматически из Telegram ✨</div>
+        </div>
+
+        <div class="filters">
+          <input id="searchInput" type="text" placeholder="Поиск товара, код..." />
+          <select id="sortSelect">
+            <option value="default">Сортировка</option>
+            <option value="price_asc">Цена: по возрастанию</option>
+            <option value="price_desc">Цена: по убыванию</option>
+            <option value="name_asc">Название: А → Я</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="productsGrid" class="grid"></div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="tracking">
+    <div class="container">
+      <h2>Трекинг по номеру телефона</h2>
+      <p class="muted">
+        Введите номер телефона. Статус виден только если менеджер добавила телефон в базу.
+      </p>
+
+      <div class="tracking">
+        <input id="phoneInput" type="tel" placeholder="+7 777 123 45 67" />
+        <button class="btn" id="trackBtn">Проверить</button>
+      </div>
+
+      <div id="trackResult" class="track-result"></div>
+    </div>
+  </section>
+
+ <section class="reviews-strip" id="reviews">
+  <div class="section-title">
+    <h2>Отзывы клиентов 💬</h2>
+    <p>Скриншоты реальных отзывов</p>
+  </div>
+
+  <div class="marquee">
+    <div class="marquee__track" id="reviewsTrack">
+
+      <div class="review-card"><img src="./reviews/rev1.jpg" alt="Отзыв 1"></div>
+      <div class="review-card"><img src="./reviews/rev2.jpg" alt="Отзыв 2"></div>
+      <div class="review-card"><img src="./reviews/rev3.jpg" alt="Отзыв 3"></div>
+      <div class="review-card"><img src="./reviews/rev4.jpg" alt="Отзыв 4"></div>
+      <div class="review-card"><img src="./reviews/rev5.jpg" alt="Отзыв 5"></div>
+      <div class="review-card"><img src="./reviews/rev6.jpg" alt="Отзыв 6"></div>
+      <div class="review-card"><img src="./reviews/rev7.jpg" alt="Отзыв 7"></div>
+      <div class="review-card"><img src="./reviews/rev8.jpg" alt="Отзыв 8"></div>
+      <div class="review-card"><img src="./reviews/rev9.jpg" alt="Отзыв 9"></div>
+      <div class="review-card"><img src="./reviews/rev10.jpg" alt="Отзыв 10"></div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section section--alt" id="faq">
+  <div class="container">
+    <div class="section__head">
+      <div>
+        <h2>FAQ / Гарантия</h2>
+        <div class="muted">Ответы на самые частые вопросы</div>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">
+          Откуда товар? Какое качество товара?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          В магазине KOMPLI товар исключительно лучшего качества. Мы привозим и закупаем товар из Турции, Кореи и Китая.
+          За время работы мы наладили отношения с поставщиками: знаем где лучшее качество и лучшая цена.
+          Мы являемся первыми представителями от поставщика, поэтому цена у нас ниже чем в других магазинах.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Почему у вас мало отзывов? Вы же давно работаете!
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Наш магазин работает с 2020 года. Предыдущий профиль был заблокирован и часть отзывов осталась там.
+          Если при получении товара вы сделаете фото/отзыв — на следующий заказ получите скидку -10%.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          У вас есть самовывоз?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          В данный момент у нас действует только доставка. У нас нет точки самовывоза.
+          Это позволяет держать цены ниже, так как не нужно платить аренду и дополнительные расходы.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          В какие страны есть доставка?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Доставка действует в Казахстан, Беларусь, Россию, Таджикистан, Кыргызстан и Узбекистан.
+          По поводу отправки в другие страны уточняйте у менеджера.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          Как оформить заказ на сайте?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Добавьте товары в корзину → нажмите “Оформить заказ” → заполните имя и телефон.
+          После подтверждения вы получите номер заказа — отправьте его менеджеру в Telegram.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Можно ли обменять или вернуть товар?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Да. Если вам что-то не подошло или не понравилось — вы можете оформить обмен товара или возврат средств.
+          Подробности уточняйте у менеджера.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="guarantee">
+  <div class="container">
+    <div class="section__head">
+      <div>
+        <h2>Гарантии</h2>
+        <div class="muted">Почему нам можно доверять</div>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">
+          Гарантия магазина KOMPLI
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <ol style="margin:0; padding-left:18px;">
+            <li>Мы работаем достаточно давно — обманывать вас не имеет никакого смысла для нас.</li>
+            <li>Вы можете ознакомиться с нашими документами (и отзывами) ниже.</li>
+            <li>Отзывы довольных клиентов представлены в наших соцсетях.</li>
+            <li>
+              В нашем магазине действует <b>обмен товара</b> или <b>возврат средств</b>.
+              Если вам что-то не подошло или не понравилось — вы всегда можете вернуть товар и получить деньги обратно.
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <section class="section" id="contacts">
+    <div class="container">
+      <h2>Контакты</h2>
+      <p class="muted">Свяжитесь с менеджером в Telegram после оформления заказа.</p>
+
+      <div class="contacts">
+        <div class="contact-card">
+          <div class="contact-title">Telegram</div>
+          <div class="contact-value">@manager_kompli</div>
+          <div class="contact-note">Отправьте номер заказа + ваш телефон.</div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-title">График</div>
+          <div class="contact-value">09:00 – 22:00</div>
+          <div class="contact-note">Ответ в течение дня</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="overlay" id="overlay"></div>
+
+  <aside class="cart" id="cartDrawer">
+    <div class="cart__head">
+      <h3>Корзина</h3>
+      <button class="icon-btn" id="closeCartBtn">✕</button>
+    </div>
+
+    <div id="cartItems" class="cart__items"></div>
+
+    <div class="cart__footer">
+      <div class="cart__total">
+        <span>Итого:</span>
+        <b id="cartTotal">$0</b>
+      </div>
+
+      <button class="btn btn--wide" id="checkoutBtn">
+        Оформить заказ
+      </button>
+
+      <div class="small muted">
+        Оплата происходит в Telegram после оформления.
+      </div>
+    </div>
+  </aside>
+  <div class="modal" id="quickViewModal">
+    <div class="modal__content">
+      <div class="modal__head">
+        <h3 id="qvTitle">Товар</h3>
+        <button class="icon-btn" id="closeQuickViewBtn">✕</button>
+      </div>
+
+      <div class="qv">
+        <div class="qv__media">
+          <img id="qvImage" src="" alt="Фото товара"/>
+          <div class="qv__controls">
+            <button class="icon-btn" id="qvPrev">◀</button>
+            <div class="qv__count" id="qvCount">1 / 1</div>
+            <button class="icon-btn" id="qvNext">▶</button>
+          </div>
+        </div>
+
+        <div class="qv__info">
+          <div class="qv__meta">
+            <span class="tag" id="qvCode">Код: —</span>
+            <span class="price" id="qvPrice">$0</span>
+          </div>
+
+          <div class="muted" id="qvSizes"></div>
+
+          <button class="btn btn--wide" id="qvAddBtn">Добавить в корзину</button>
+
+          <div class="muted" style="font-size:13px; line-height:1.5">
+            После оформления заказа вы получите номер заказа и отправите его менеджеру в Telegram.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="checkoutModal">
+    <div class="modal__content">
+      <div class="modal__head">
+        <h3>Оформление заказа</h3>
+        <button class="icon-btn" id="closeModalBtn">✕</button>
+      </div>
+
+      <form id="checkoutForm" class="form">
+        <label>
+          Имя
+          <input type="text" id="nameInput" required placeholder="Например: Алина" />
+        </label>
+
+        <label>
+          Телефон
+          <input type="tel" id="checkoutPhoneInput" required placeholder="+7 777 123 45 67" />
+        </label>
+
+        <label>
+  Размер
+  <input type="text" id="sizeInput" required placeholder="Например: M / XL / 42 / 44" />
+</label>
+
+
+        <label>
+          Адрес / комментарий
+          <textarea id="addressInput" rows="3" required placeholder="Город, улица, дом, этаж..."></textarea>
+        </label>
+
+        <button class="btn btn--wide" type="submit">Подтвердить заказ</button>
+      </form>
+
+      <div id="orderResult" class="order-result"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer__row">
+      <div class="muted">© 2020 KOMPLI — Premium Store</div>
+      <div class="muted">Made with 💜</div>
+    </div>
+  </footer>
+<div class="img-modal" id="imgModal">
+  <div class="img-modal__content">
+    <button class="img-modal__close" id="imgModalClose">✕</button>
+    <img id="imgModalImage" src="" alt="Фото товара">
+  </div>
+</div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
