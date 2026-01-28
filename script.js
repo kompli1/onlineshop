@@ -1,5 +1,5 @@
 
-const BACKEND_URL = "http://192.109.200.232:3001";
+const BACKEND_URL = "https://api.kompli.style";
 
 let PRODUCTS = [];
 let cart = JSON.parse(localStorage.getItem("cart_v1") || "[]");
@@ -612,6 +612,7 @@ function copyTextToClipboard(text) {
     alert("Текст скопирован. Просто вставьте его в Telegram менеджеру 👍 ");
   });
 }
+
 
 
 
