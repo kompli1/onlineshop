@@ -1,5 +1,5 @@
 
-const BACKEND_URL = "https://backend-server-l52x.onrender.com";
+const BACKEND_URL = "http://192.109.200.232:3001";
 
 let PRODUCTS = [];
 let cart = JSON.parse(localStorage.getItem("cart_v1") || "[]");
@@ -612,5 +612,6 @@ function copyTextToClipboard(text) {
     alert("Текст скопирован. Просто вставьте его в Telegram менеджеру 👍 ");
   });
 }
+
 
 
