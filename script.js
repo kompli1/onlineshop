@@ -407,6 +407,7 @@ orderResult.innerHTML = `
 
   <div style="margin-top:8px;font-size:12px;opacity:.7">
     Если Telegram открылся без текста — нажмите «Скопировать»
+    После отправьте скопированный текст <a href="https://t.me/manager_kompli" target="_blank">СЮДА</a>
   </div>
 `;
 
@@ -612,6 +613,7 @@ function copyTextToClipboard(text) {
     alert("Текст скопирован. Просто вставьте его в Telegram менеджеру 👍 ");
   });
 }
+
 
 
 
