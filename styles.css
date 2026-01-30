@@ -997,3 +997,18 @@ input:focus, select:focus, textarea:focus{
   }
 }
 
+.modal__title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.modal__subtitle {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  opacity: 0.85;
+}
+
+
+
