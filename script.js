@@ -373,6 +373,20 @@ checkoutForm.addEventListener("submit", async (e) => {
       alert(data.message || "Ошибка оформления заказа");
       return;
     }
+    
+sendOrderToSheets({
+  orderId: data.orderId,
+  name,
+  phone,
+  telegram,
+  size,
+  address,
+  items: cart.map(i =>
+    `${i.name} | ${i.productCode} | ${i.qty}шт`
+  ).join(" ; "),
+  total: getCartTotal()
+});
+
 
     orderResult.style.display = "block";
 
@@ -613,6 +627,7 @@ function copyTextToClipboard(text) {
     alert("Текст скопирован. Просто вставьте его в Telegram менеджеру 👍 ");
   });
 }
+
 
 
 
