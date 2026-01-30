@@ -1,4 +1,4 @@
-const SHEETS_WEBHOOK = "https://script.google.com/macros/s/AKfycbyXX-AQuwsz8i0owIwBn3GfFeFJE-F5J0aYkq2EWIeQTaMDXNX4WHXnK6vVbjzCaZeL/exec";
+const SHEETS_WEBHOOK = "https://script.google.com/macros/s/AKfycbykfJON5DSDXcgAedxk1OOcDtDliouNBwFfYQedQVqKDDJC3LGuZs5BW1D7DTlNUK3g/exec";
 
 async function sendOrderToSheets(data) {
   await fetch(SHEETS_WEBHOOK, {
