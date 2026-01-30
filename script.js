@@ -348,6 +348,8 @@ checkoutForm.addEventListener("submit", async (e) => {
   const phone = document.getElementById("checkoutPhoneInput").value.trim();
   const size = document.getElementById("sizeInput").value.trim();
   const address = document.getElementById("addressInput").value.trim();
+  const telegram = document.getElementById("telegramInput")?.value.trim() || "";
+
 
   if (!name || !phone || !size || !address) {
   alert("Пожалуйста, заполните имя, телефон, размер и адрес");
@@ -627,6 +629,7 @@ function copyTextToClipboard(text) {
     alert("Текст скопирован. Просто вставьте его в Telegram менеджеру 👍 ");
   });
 }
+
 
 
 
