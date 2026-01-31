@@ -1,17 +1,18 @@
-const SHEETS_WEBHOOK = "https://script.google.com/macros/s/AKfycbwiB15DANjeqq0ojI9-nsFxvC3XEUou5FTw6G9L-myonlKw5muExw0wrVOaSIKN1Xga/exec";
+const SHEETS_WEBHOOK = "https://script.google.com/macros/s/AKfycbzRdIf3JM-BQ8Wy3t_0MEfpi7xwZ1eCTwhHMFDZjI5TGXvfvaNxPE6QpeJLZdT5t1ME/exec";
 
 function sendOrderToSheets(data) {
-  const form = document.createElement("form");
-  form.method = "POST";
-  form.action = SHEETS_WEBHOOK;
-  form.target = "hidden_iframe";
+  console.log("📤 Sending to Sheets:", data);
 
-  const input = document.createElement("input");
-  input.name = "payload";
-  input.value = JSON.stringify(data);
-
-  form.appendChild(input);
-  document.body.appendChild(form);
-  form.submit();
-  form.remove();
+  fetch(SHEETS_WEBHOOK, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      payload: JSON.stringify(data)
+    })
+  })
+  .then(r => r.text())
+  .then(t => console.log("✅ Sheets response:", t))
+  .catch(e => console.log("❌ Sheets error:", e));
 }
