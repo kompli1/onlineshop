@@ -1,6 +1,4 @@
-const SHEETS_WEBHOOK = "https://script.google.com/macros/s/AKfycbzPzqu2vRcey_4IiQZYfuj30NjWt5rAJnyMxqhVA2fCF52ap01a2eMsrPjJJmPP574b/exec";
-
-
+const SHEETS_WEBHOOK = "https://script.google.com/macros/s/AKfycbwiB15DANjeqq0ojI9-nsFxvC3XEUou5FTw6G9L-myonlKw5muExw0wrVOaSIKN1Xga/exec";
 
 function sendOrderToSheets(data) {
   const form = document.createElement("form");
