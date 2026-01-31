@@ -362,7 +362,7 @@ checkoutForm.addEventListener("submit", async (e) => {
     const res = await fetch(`${BACKEND_URL}/api/order`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, phone, size, address, cart }),
+     body: JSON.stringify({ name, phone, telegram, size, address, cart }),
     });
 
     const text = await res.text();
@@ -629,6 +629,7 @@ function copyTextToClipboard(text) {
     alert("Текст скопирован. Просто вставьте его в Telegram менеджеру 👍 ");
   });
 }
+
 
 
 
