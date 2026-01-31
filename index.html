@@ -420,11 +420,23 @@
   <script src="sheets.js"></script>
   <script src="script.js" defer></script>
   
-  <iframe name="hidden_iframe" style="display:none"></iframe>
+  <iframe name="hidden_iframe" style="display:none" id="sheetsFrame"></iframe>
+
+  <script>
+window.addEventListener("load", () => {
+  const f = document.getElementById("sheetsFrame");
+  if (!f) return;
+
+  f.addEventListener("load", () => {
+    console.log("📥 [Sheets] iframe load event fired");
+  });
+});
+</script>
 
 
 </body>
 </html>
+
 
 
 
