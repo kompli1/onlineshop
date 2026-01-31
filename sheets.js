@@ -1,18 +1,37 @@
 const SHEETS_WEBHOOK = "https://script.google.com/macros/s/AKfycbzRdIf3JM-BQ8Wy3t_0MEfpi7xwZ1eCTwhHMFDZjI5TGXvfvaNxPE6QpeJLZdT5t1ME/exec";
 
 function sendOrderToSheets(data) {
-  console.log("📤 Sending to Sheets:", data);
+  console.log("📤 [Sheets] start sendOrderToSheets");
+  console.log("📤 [Sheets] webhook:", SHEETS_WEBHOOK);
+  console.log("📤 [Sheets] payload object:", data);
 
-  fetch(SHEETS_WEBHOOK, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      payload: JSON.stringify(data)
-    })
-  })
-  .then(r => r.text())
-  .then(t => console.log("✅ Sheets response:", t))
-  .catch(e => console.log("❌ Sheets error:", e));
+  try {
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = SHEETS_WEBHOOK;
+    form.target = "hidden_iframe";
+
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "payload";
+    input.value = JSON.stringify(data);
+
+    console.log("📤 [Sheets] payload json:", input.value);
+
+    form.appendChild(input);
+    document.body.appendChild(form);
+
+    console.log("📤 [Sheets] submitting form…");
+    form.submit();
+
+    console.log("✅ [Sheets] form submitted");
+
+    setTimeout(() => {
+      form.remove();
+      console.log("🧹 [Sheets] form removed");
+    }, 1000);
+
+  } catch (err) {
+    console.error("❌ [Sheets] send error:", err);
+  }
 }
