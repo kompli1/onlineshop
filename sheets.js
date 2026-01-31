@@ -1,4 +1,4 @@
-const SHEETS_WEBHOOK = "https://script.google.com/macros/s/AKfycbyf0sMobvzsNuxcQnlET1RSYgFaYNfRG_2oXa4pLAE36L5laAITW2vNmEcAPu8a74Az/exec";
+const SHEETS_WEBHOOK = "https://script.google.com/macros/s/AKfycbwQldUB_cxkhgCT_Dg7zyh8ynmJtHcoY-m_WOVAMAQiIJQezr-bvggs-LHzMHXfyWs/exec";
 
 function sendOrderToSheets(data) {
   console.log("📤 [Sheets] start sendOrderToSheets");
