@@ -1,5 +1,5 @@
 
-const BACKEND_URL = "https://api.kompli.style";
+const BACKEND_URL = "https://api.kavistore.online";";
 
 let PRODUCTS = [];
 let cart = JSON.parse(localStorage.getItem("cart_v1") || "[]");
