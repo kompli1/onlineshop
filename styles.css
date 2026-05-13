@@ -1107,3 +1107,337 @@ input:focus, select:focus, textarea:focus{
     font-size:11px;
   }
 }
+
+
+/* KAVISTORE premium palette v2 — graphite / platinum / ice, no gold */
+:root{
+  --bg:#07080b;
+  --card:#11141a;
+  --card2:#0d1016;
+  --text:#f7f8fb;
+  --muted:rgba(247,248,251,.66);
+  --gold:#dfe6f3;
+  --goldSoft:rgba(171,190,218,.16);
+  --goldLine:rgba(196,210,232,.18);
+  --line:rgba(255,255,255,.10);
+  --shadow:0 22px 70px rgba(0,0,0,.62);
+}
+
+body{
+  background:#07080b !important;
+  color:var(--text);
+}
+
+body::before{
+  background:
+    radial-gradient(920px 520px at 65% 10%, rgba(160,178,210,.085), transparent 58%),
+    radial-gradient(760px 460px at 5% 90%, rgba(255,255,255,.045), transparent 60%),
+    linear-gradient(180deg, #07080b 0%, #0b0f17 52%, #06070a 100%) !important;
+}
+
+body::after{
+  background:
+    linear-gradient(to right, transparent 0%, transparent 72%, rgba(190,205,230,0) 73%, rgba(190,205,230,.10) 82%, rgba(230,236,248,.14) 92%, transparent 100%),
+    linear-gradient(135deg, transparent 0%, transparent 76%, rgba(214,224,240,.15) 77%, transparent 78%),
+    linear-gradient(45deg, transparent 0%, transparent 82%, rgba(142,164,202,.12) 83%, transparent 84%) !important;
+  opacity:.9;
+}
+
+.header{
+  background:rgba(7,8,11,.78) !important;
+  border-bottom:1px solid rgba(220,230,245,.10) !important;
+}
+
+.brand__logo{
+  border:1px solid rgba(220,230,245,.14) !important;
+  box-shadow:0 18px 48px rgba(0,0,0,.48), 0 0 0 1px rgba(255,255,255,.025) inset !important;
+}
+
+.brand__tag,
+.muted,
+.hero__text p,
+.contact-note,
+.contact-title{
+  color:rgba(247,248,251,.62) !important;
+}
+
+.nav a:hover,
+.cart-btn:hover,
+.social-chip:hover{
+  background:rgba(225,234,248,.065) !important;
+}
+
+.cart-btn,
+.social-chip,
+.icon-btn,
+input,
+select,
+textarea,
+.tag{
+  border-color:rgba(220,230,245,.14) !important;
+  background:rgba(225,234,248,.045) !important;
+}
+
+.badge,
+.pill{
+  color:#f7f8fb !important;
+  background:rgba(196,210,232,.10) !important;
+  border-color:rgba(220,230,245,.17) !important;
+}
+
+.hero .container{
+  border:1px solid rgba(210,222,242,.16) !important;
+  background:linear-gradient(180deg, rgba(13,16,22,.72), rgba(8,10,14,.42)) !important;
+  box-shadow:0 34px 130px rgba(0,0,0,.70), inset 0 0 0 1px rgba(255,255,255,.045) !important;
+}
+
+.hero .container::before{
+  background:
+    radial-gradient(900px 420px at 50% 0%, rgba(196,210,232,.075), transparent 56%),
+    radial-gradient(700px 460px at 4% 110%, rgba(255,255,255,.035), transparent 62%) !important;
+}
+
+.hero__card,
+.mini-line,
+.card,
+.contact-card,
+.faq-item,
+.track-result,
+.cart-item,
+.modal__content{
+  background:linear-gradient(180deg, rgba(19,23,31,.72), rgba(11,14,20,.62)) !important;
+  border-color:rgba(220,230,245,.11) !important;
+  box-shadow:0 22px 70px rgba(0,0,0,.55) !important;
+}
+
+.hero__mini-title{
+  color:#dfe6f3 !important;
+}
+
+.mini-line:hover,
+.card:hover{
+  border-color:rgba(220,230,245,.22) !important;
+  box-shadow:0 24px 76px rgba(130,150,185,.10), 0 22px 70px rgba(0,0,0,.58) !important;
+}
+
+.section--alt{
+  background:rgba(220,230,245,.025) !important;
+  border-top:1px solid rgba(220,230,245,.08) !important;
+  border-bottom:1px solid rgba(220,230,245,.08) !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:rgba(210,222,242,.34) !important;
+  box-shadow:0 0 0 4px rgba(160,180,215,.09) !important;
+}
+
+.btn{
+  color:#071018 !important;
+  background:linear-gradient(180deg, #f8fbff 0%, #cfd9ea 52%, #aebbd1 100%) !important;
+  border:1px solid rgba(255,255,255,.28) !important;
+  box-shadow:0 14px 34px rgba(160,178,210,.15), inset 0 1px 0 rgba(255,255,255,.65) !important;
+}
+
+.btn,
+.btn *{
+  color:#071018 !important;
+}
+
+.btn--ghost{
+  color:#f7f8fb !important;
+  background:rgba(225,234,248,.045) !important;
+  border:1px solid rgba(220,230,245,.16) !important;
+  box-shadow:none !important;
+}
+
+.btn--ghost *{
+  color:#f7f8fb !important;
+}
+
+.price,
+h1,
+h2{
+  color:#f7f8fb !important;
+}
+
+.tag{
+  color:rgba(247,248,251,.68) !important;
+}
+
+.price-premium__main{
+  color:#071018 !important;
+  background:linear-gradient(180deg, #fbfdff 0%, #d8e2f2 48%, #aebbd1 100%) !important;
+  box-shadow:0 12px 30px rgba(160,178,210,.16), inset 0 1px 0 rgba(255,255,255,.68) !important;
+}
+
+.price-premium__chips span{
+  border-color:rgba(220,230,245,.15) !important;
+  background:rgba(225,234,248,.055) !important;
+  color:rgba(247,248,251,.78) !important;
+}
+
+.review-card{
+  border-color:rgba(220,230,245,.10) !important;
+  background:rgba(225,234,248,.04) !important;
+  box-shadow:0 14px 34px rgba(0,0,0,.42) !important;
+}
+
+.footer{
+  border-top:1px solid rgba(220,230,245,.10) !important;
+}
+
+.contact-value a,
+.reviews-strip a,
+.modal__subtitle a{
+  color:#dfe6f3 !important;
+  text-decoration:underline;
+  text-decoration-color:rgba(223,230,243,.35);
+}
+
+
+/* KAVISTORE brand clarity + subtle watermark protection v221 */
+.brand{
+  gap:14px;
+}
+
+.brand__logo-wrap{
+  position:relative;
+  display:grid;
+  place-items:center;
+  width:54px;
+  height:54px;
+  flex:0 0 54px;
+  border-radius:18px;
+  background:linear-gradient(180deg, rgba(20,25,34,.98), rgba(10,13,18,.98));
+  border:1px solid rgba(220,230,245,.20);
+  box-shadow:
+    0 12px 34px rgba(0,0,0,.40),
+    0 0 0 1px rgba(255,255,255,.03) inset;
+  overflow:hidden;
+}
+.brand__logo-wrap::before{
+  content:"";
+  position:absolute;
+  inset:-18%;
+  background:radial-gradient(circle at 30% 20%, rgba(255,255,255,.12), transparent 34%), radial-gradient(circle at 70% 80%, rgba(160,178,210,.12), transparent 28%);
+  pointer-events:none;
+}
+.brand__logo-wrap::after{
+  content:"";
+  position:absolute;
+  inset:1px;
+  border-radius:17px;
+  border:1px solid rgba(255,255,255,.04);
+  pointer-events:none;
+}
+.brand__logo{
+  width:100% !important;
+  height:100% !important;
+  border:none !important;
+  border-radius:18px !important;
+  object-fit:cover;
+  box-shadow:none !important;
+  filter:contrast(1.08) brightness(1.04) saturate(.94);
+  transform:translateZ(0);
+}
+.brand__text{
+  gap:3px;
+}
+.brand__name{
+  letter-spacing:2.8px;
+  font-size:17px;
+  line-height:1;
+}
+.brand__tag{
+  font-size:10px;
+  letter-spacing:2.15px;
+  text-transform:uppercase;
+  opacity:.92;
+}
+
+/* subtle site watermarks */
+.site-watermarks{
+  position:fixed;
+  inset:0;
+  z-index:6;
+  pointer-events:none;
+  overflow:hidden;
+  user-select:none;
+}
+.site-watermarks .wm{
+  position:absolute;
+  font-weight:800;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:rgba(228,236,248,.032);
+  text-shadow:0 0 18px rgba(228,236,248,.02);
+  white-space:nowrap;
+  mix-blend-mode:screen;
+}
+.site-watermarks .wm--1{top:12%; left:2%; transform:rotate(-18deg); font-size:clamp(16px,2vw,28px);}
+.site-watermarks .wm--2{top:26%; right:-2%; transform:rotate(-16deg); font-size:clamp(18px,2.2vw,30px);}
+.site-watermarks .wm--3{top:47%; left:4%; transform:rotate(-14deg); font-size:clamp(16px,1.9vw,26px);}
+.site-watermarks .wm--4{top:18%; left:42%; transform:rotate(-20deg); font-size:clamp(30px,4vw,56px); letter-spacing:.12em; color:rgba(228,236,248,.022);}
+.site-watermarks .wm--5{top:63%; right:5%; transform:rotate(-12deg); font-size:clamp(16px,2vw,28px);}
+.site-watermarks .wm--6{top:76%; left:10%; transform:rotate(-18deg); font-size:clamp(30px,4vw,56px); letter-spacing:.12em; color:rgba(228,236,248,.022);}
+.site-watermarks .wm--7{top:82%; right:-4%; transform:rotate(-16deg); font-size:clamp(16px,2vw,28px);}
+.site-watermarks .wm--8{top:92%; left:34%; transform:rotate(-10deg); font-size:clamp(14px,1.8vw,22px);}
+
+/* product/review image watermarks */
+.card__img,
+.review-card{
+  position:relative;
+}
+.card__img::before{
+  content:"KAVISTORE";
+  position:absolute;
+  right:12px;
+  bottom:12px;
+  z-index:2;
+  padding:4px 9px;
+  border-radius:999px;
+  font-size:10px;
+  letter-spacing:.26em;
+  font-weight:700;
+  color:rgba(255,255,255,.16);
+  background:rgba(7,8,11,.10);
+  border:1px solid rgba(255,255,255,.05);
+  backdrop-filter:blur(2px);
+  pointer-events:none;
+}
+.review-card::after{
+  content:"KAVISTORE";
+  position:absolute;
+  top:10px;
+  right:10px;
+  z-index:2;
+  padding:4px 8px;
+  border-radius:999px;
+  font-size:9px;
+  letter-spacing:.24em;
+  font-weight:700;
+  color:rgba(255,255,255,.14);
+  background:rgba(7,8,11,.08);
+  border:1px solid rgba(255,255,255,.04);
+  backdrop-filter:blur(2px);
+  pointer-events:none;
+}
+
+@media (max-width: 640px){
+  .brand__logo-wrap{
+    width:48px;
+    height:48px;
+    flex-basis:48px;
+    border-radius:16px;
+  }
+  .brand__name{font-size:15px; letter-spacing:2.4px;}
+  .brand__tag{font-size:9px; letter-spacing:1.8px;}
+  .site-watermarks .wm{opacity:1;}
+  .site-watermarks .wm--1{top:14%; left:-3%;}
+  .site-watermarks .wm--2{top:32%; right:-18%;}
+  .site-watermarks .wm--3{top:54%; left:-8%;}
+  .site-watermarks .wm--5{top:74%; right:-14%;}
+  .site-watermarks .wm--8{display:none;}
+}
