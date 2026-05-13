@@ -1,5 +1,5 @@
 
-const BACKEND_URL = "https://api.kavistore.online";";
+const BACKEND_URL = "https://api.kavistore.online";
 
 let PRODUCTS = [];
 let cart = JSON.parse(localStorage.getItem("cart_v1") || "[]");
@@ -42,12 +42,72 @@ const qvAddBtn = document.getElementById("qvAddBtn");
 
 
 
+function formatPrice(num, prices) {
+  const data = prices || {};
+  const kzt = Number(data.kzt || num || 0);
+  const byn = Number(data.byn || 0);
+  const kgs = Number(data.kgs || 0);
+  const uzs = Number(data.uzs || 0);
+
+  const parts = [];
+
+  if (kzt) {
+    parts.push(`${new Intl.NumberFormat("ru-RU").format(kzt)} ₸ (🇰🇿)`);
+  }
+
+  if (byn) {
+    parts.push(`${new Intl.NumberFormat("ru-RU").format(byn)} Br (🇧🇾)`);
+  }
+
+  if (kgs) {
+    parts.push(`${new Intl.NumberFormat("ru-RU").format(kgs)} COM (🇰🇬)`);
+  }
+
+  if (uzs) {
+    parts.push(`${new Intl.NumberFormat("ru-RU").format(uzs)} СУМ (🇺🇿)`);
+  }
+
+  if (parts.length) return parts.join("  ");
+
+  return "Цена уточняется";
+}
+
+function formatPriceHTML(num, prices) {
+  const data = prices || {};
+  const kzt = Number(data.kzt || num || 0);
+  const byn = Number(data.byn || 0);
+  const kgs = Number(data.kgs || 0);
+  const uzs = Number(data.uzs || 0);
+
+  const main = kzt || Number(num || 0);
+  const mainHTML = main
+    ? `<div class="price-premium__main">${new Intl.NumberFormat("ru-RU").format(main)} ₸ <span>🇰🇿</span></div>`
+    : `<div class="price-premium__main">Цена уточняется</div>`;
+
+  const chips = [];
+
+  if (byn) chips.push(`<span>🇧🇾 ${new Intl.NumberFormat("ru-RU").format(byn)} Br</span>`);
+  if (kgs) chips.push(`<span>🇰🇬 ${new Intl.NumberFormat("ru-RU").format(kgs)} COM</span>`);
+  if (uzs) chips.push(`<span>🇺🇿 ${new Intl.NumberFormat("ru-RU").format(uzs)} СУМ</span>`);
+
+  return `
+    <div class="price-premium">
+      ${mainHTML}
+      ${chips.length ? `<div class="price-premium__chips">${chips.join("")}</div>` : ""}
+    </div>
+  `;
+}
+
+function formatCartPrice(num) {
+  return new Intl.NumberFormat("ru-RU").format(Number(num || 0)) + " ₸";
+}
+
+function getMainPrice(product) {
+  return Number(product?.prices?.kzt || product?.price || 0);
+}
+
 function formatUSD(num) {
-  const n = Number(num || 0);
-  return "$" + new Intl.NumberFormat("en-US", {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 2,
-  }).format(n);
+  return formatCartPrice(num);
 }
 
 
@@ -77,7 +137,7 @@ function addToCart(productId) {
   id: p.id,
   name: p.name,
   productCode: p.productCode || "—",
-  price: Number(p.price || 0),
+  price: getMainPrice(p),
   qty: 1,
 });
 
@@ -106,19 +166,27 @@ function safeText(v) {
 
 async function loadProducts() {
   try {
-    const res = await fetch(`${BACKEND_URL}/catalog.json`);
+    const res = await fetch(`${BACKEND_URL}/catalog.json?t=${Date.now()}`, {
+      cache: "no-store"
+    });
+
+    if (!res.ok) {
+      throw new Error("HTTP " + res.status);
+    }
+
     const data = await res.json();
+
+    console.log("✅ PRODUCTS LOADED:", data);
 
     PRODUCTS = Array.isArray(data) ? data : [];
 
-    applyFilters();
+    renderProducts(PRODUCTS);
   } catch (e) {
     console.log("Ошибка загрузки товаров:", e);
     productsGrid.innerHTML = `
       <div class="muted">
         ❌ Не удалось загрузить товары.<br/>
-        Проверь что backend запущен: <b>node server.js</b><br/>
-        И открой: <b>${BACKEND_URL}/catalog.json</b>
+        Открой: <b>https://api.kavistore.online/catalog.json</b>
       </div>
     `;
   }
@@ -149,7 +217,7 @@ function renderProducts(list) {
     const getFullUrl = (imgPath) => new URL(imgPath, BACKEND_URL).href;
 
     const codeLabel = p.productCode ? `Код: ${p.productCode}` : "Telegram";
-    const priceLabel = formatUSD(p.price);
+    const priceLabel = formatPriceHTML(p.price, p.prices);
 
     card.innerHTML = `
       <div class="card__img">
@@ -179,7 +247,7 @@ function renderProducts(list) {
 
         <div class="card__meta">
           <div class="tag">${codeLabel}</div>
-          <div class="price">${priceLabel}</div>
+          <div class="price price--premium">${priceLabel}</div>
         </div>
 
         <button class="btn" data-add="${p.id}">Добавить в корзину</button>
@@ -250,8 +318,8 @@ function applyFilters() {
 
   const sort = sortSelect.value;
 
-  if (sort === "price_asc") list.sort((a, b) => (a.price || 0) - (b.price || 0));
-  if (sort === "price_desc") list.sort((a, b) => (b.price || 0) - (a.price || 0));
+  if (sort === "price_asc") list.sort((a, b) => getMainPrice(a) - getMainPrice(b));
+  if (sort === "price_desc") list.sort((a, b) => getMainPrice(b) - getMainPrice(a));
   if (sort === "name_asc")
     list.sort((a, b) => safeText(a.name).localeCompare(safeText(b.name), "ru"));
 
@@ -260,7 +328,7 @@ function applyFilters() {
 
 function renderCart() {
   cartCount.textContent = getCartCount();
-  cartTotal.textContent = formatUSD(getCartTotal());
+  cartTotal.textContent = formatCartPrice(getCartTotal());
 
   cartItems.innerHTML = "";
 
@@ -276,7 +344,7 @@ function renderCart() {
       <div class="cart-item__img">🛍️</div>
       <div class="cart-item__info">
         <div class="cart-item__title">${safeText(item.name)}</div>
-        <div class="cart-item__sub">${formatUSD(item.price)} • Кол-во: ${item.qty}</div>
+        <div class="cart-item__sub">${formatCartPrice(item.price)} • Кол-во: ${item.qty}</div>
       </div>
       <div class="qty">
         <button data-dec="${item.id}">−</button>
@@ -392,10 +460,10 @@ sendOrderToSheets({
 
     orderResult.style.display = "block";
 
-const tgUsername = "manager_kompli";
+const tgUsername = "kavi_manager";
 
 const tgText =
-  `Здравствуйте! Я с сайта KOMPLI ✅\n` +
+  `Здравствуйте! Я с сайта KAVISTORE ✅\n` +
   `Мой заказ: ${data.orderId}\n` +
   `Телефон: ${phone}\n` +
   `Размер: ${size || "не указан"}\n`;
@@ -408,7 +476,7 @@ orderResult.innerHTML = `
   ✅ <b>Заказ оформлен!</b><br/><br/>
 
   <b>Номер заказа:</b> ${data.orderId}<br/>
-  <b>Сумма:</b> ${formatUSD(data.total)}<br/><br/>
+  <b>Сумма:</b> ${formatCartPrice(data.total)}<br/><br/>
 
   <a href="${tgLinkApp}" class="tg-pay-btn">
     💬 Написать менеджеру в Telegram
@@ -482,7 +550,7 @@ trackBtn.addEventListener("click", async () => {
       ✅ Заказ найден!<br/>
       🧾 Код: <b>${data.orderId}</b><br/>
       📦 Статус: <b>${data.statusText}</b><br/>
-      💰 Сумма: <b>${formatUSD(data.total)}</b>
+      💰 Сумма: <b>${formatCartPrice(data.total)}</b>
     `;
   } catch (err) {
     trackResult.innerHTML = "❌ Ошибка соединения с сервером";
@@ -512,7 +580,7 @@ function openQuickView(product) {
 
   qvTitle.textContent = safeText(product.name) || "Товар";
   qvCode.textContent = product.productCode ? `Код: ${product.productCode}` : "Telegram";
-  qvPrice.textContent = formatUSD(product.price || 0);
+  qvPrice.innerHTML = formatPriceHTML(product.price || 0, product.prices);
 
   const sizesText = Array.isArray(product.sizes) && product.sizes.length
     ? `Размеры: ${product.sizes.join(", ")}`
@@ -626,7 +694,7 @@ console.log("PHONE:", phoneInput.value);
 
 function copyTextToClipboard(text) {
   navigator.clipboard.writeText(text).then(() => {
-    alert("Текст скопирован. Просто вставьте его в Telegram менеджеру 👍 ");
+    alert("Текст скопирован. Просто вставьте его в Telegram менеджеру 👍");
   });
 }
 
